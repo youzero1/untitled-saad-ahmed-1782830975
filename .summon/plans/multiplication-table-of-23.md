@@ -1,5 +1,5 @@
 ---
-status: pending
+status: building
 title: Multiplication Table of 23
 ---
 
