@@ -1,5 +1,5 @@
 ---
-status: building
+status: implemented
 title: Multiplication Table of 23
 ---
 

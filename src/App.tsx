@@ -1,9 +1,61 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+const rows = Array.from({ length: 10 }, (_, i) => {
+  const multiplier = i + 1;
+  return { multiplier, product: 23 * multiplier };
+});
+
 function Home() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50">
-      <p className="text-slate-400 text-lg">Multiplication Table of 23 — loading soon…</p>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md">
+        {/* Title */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-indigo-900 tracking-tight">
+            Multiplication Table
+          </h1>
+          <p className="mt-2 text-5xl font-extrabold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            23
+          </p>
+        </div>
+
+        {/* Table */}
+        <div className="bg-white rounded-2xl shadow-xl border border-indigo-100 overflow-hidden">
+          {/* Header */}
+          <div className="grid grid-cols-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold text-sm uppercase tracking-wider">
+            <div className="px-6 py-4 text-center">Multiplicand</div>
+            <div className="px-6 py-4 text-center">Multiplier</div>
+            <div className="px-6 py-4 text-center">Product</div>
+          </div>
+
+          {/* Rows */}
+          {rows.map(({ multiplier, product }, index) => (
+            <div
+              key={multiplier}
+              className={`grid grid-cols-3 transition-colors hover:bg-indigo-50 ${
+                index % 2 === 0 ? 'bg-white' : 'bg-indigo-50/40'
+              }`}
+            >
+              <div className="px-6 py-3.5 text-center text-slate-700 font-medium">
+                23
+              </div>
+              <div className="px-6 py-3.5 text-center text-slate-700 font-medium flex items-center justify-center gap-2">
+                <span className="text-indigo-400 text-sm">×</span>
+                {multiplier}
+              </div>
+              <div className="px-6 py-3.5 text-center font-bold text-indigo-700">
+                <span className="text-indigo-300 text-sm mr-1">=</span>
+                {product}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer note */}
+        <p className="text-center text-sm text-slate-400 mt-6">
+          23 × 1 through 23 × 10
+        </p>
+      </div>
     </div>
   );
 }
